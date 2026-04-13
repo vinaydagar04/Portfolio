@@ -18,8 +18,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "var(--neutral-700)",
-        secondary: "var(--neutral-500)",
+        primary: "var(--neutral-400)",
+        secondary: "var(--neutral-200)",
       },
     },
   },
@@ -30,7 +30,7 @@ const config: Config = {
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   );
 
   addBase({

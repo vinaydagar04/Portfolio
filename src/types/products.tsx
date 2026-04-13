@@ -1,10 +1,14 @@
-import { StaticImageData } from "next/image";
+export enum ProductLabel {
+  Github = "github",
+  Live = "live",
+}
 
 export type Product = {
   title: string;
   description: string;
-  thumbnail: StaticImageData;
-  images: StaticImageData[] | string[];
+  thumbnail: string;
+  images: string[];
+  label: ProductLabel;
   href: string;
   slug?: string;
   stack?: string[];

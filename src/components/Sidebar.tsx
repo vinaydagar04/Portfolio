@@ -11,7 +11,12 @@ import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconLayoutSidebarRightCollapse } from "@tabler/icons-react";
-import { isMobile } from "@/lib/utils";
+
+const isMobile = () => {
+  if (typeof window === "undefined") return false;
+  const width = window.innerWidth;
+  return width <= 1024;
+};
 
 export const Sidebar = () => {
   const [open, setOpen] = useState(isMobile() ? false : true);
@@ -25,20 +30,21 @@ export const Sidebar = () => {
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 max-w-[14rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            className="px-6  z-[100] py-10 bg-gray-950 max-w-[14rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
           >
-            <div className="flex-1 overflow-auto">
+            <div className="">
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
             </div>
-            <div onClick={() => isMobile() && setOpen(false)}>
-              <Badge href="/resume" text="Read Resume" />
-            </div>
+            <Badge
+              href="https://drive.google.com/file/d/1VVL8t62VTbW2Adm3seTfDVYYFd55gSla/view?usp=drive_link"
+              text="Read Resume"
+            />
           </motion.div>
         )}
       </AnimatePresence>
       <button
-        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-50"
+        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-10"
         onClick={() => setOpen(!open)}
       >
         <IconLayoutSidebarRightCollapse className="h-4 w-4 text-secondary" />
@@ -65,13 +71,13 @@ export const Navigation = ({
           onClick={() => isMobile() && setOpen(false)}
           className={twMerge(
             "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
-            isActive(link.href) && "bg-white shadow-lg text-primary"
+            isActive(link.href) && "bg-gray-800 shadow-lg text-primary",
           )}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500"
+              isActive(link.href) && "text-sky-500",
             )}
           />
           <span>{link.label}</span>
@@ -85,14 +91,15 @@ export const Navigation = ({
         <Link
           key={link.href}
           href={link.href}
+          target="_blank"
           className={twMerge(
-            "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm"
+            "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
           )}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500"
+              isActive(link.href) && "text-sky-500",
             )}
           />
           <span>{link.label}</span>
@@ -106,14 +113,14 @@ const SidebarHeader = () => {
   return (
     <div className="flex space-x-2">
       <Image
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80"
+        src="/images/profile.jpeg"
         alt="Avatar"
         height="40"
         width="40"
         className="object-cover object-top rounded-full flex-shrink-0"
       />
       <div className="flex text-sm flex-col">
-        <p className="font-bold text-primary">John Doe</p>
+        <p className="font-bold text-primary">Vinay Kumar</p>
         <p className="font-light text-secondary">Developer</p>
       </div>
     </div>
