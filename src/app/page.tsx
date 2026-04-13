@@ -23,11 +23,7 @@ export default function Home() {
       </Paragraph>
       <Paragraph className="max-w-xl mt-4">
         I have been building scalable web apps that are performance optimised
-<<<<<<< HEAD
         and stunning design for <Highlight>more than 1 year now</Highlight>
-=======
-        and stunning design for <Highlight>more than 1 years now</Highlight>
->>>>>>> 6b9947da3c4dd4a08d4bfde66a219cbf69c637fc
       </Paragraph>
 
       <Heading
