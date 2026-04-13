@@ -6,37 +6,37 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>; // ✅ params is a Promise now
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.slug;
+  const { slug } = await params; // ✅ unwrap properly
+
   const product = products.find((p) => p.slug === slug) as Product | undefined;
+
   if (product) {
     return {
       title: product.title,
       description: product.description,
     };
-  } else {
-    return {
-      title: "Projects | Vinay Kumar",
-      description:
-        "Vinay Kumar is a full stack developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
-    };
   }
+
+  return {
+    title: "Projects | Vinay Kumar",
+    description:
+      "Vinay Kumar is a full stack developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+  };
 }
 
-export default function SingleProjectPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const slug = params.slug;
+export default async function SingleProjectPage({ params }: Props) {
+  const { slug } = await params; // ✅ unwrap here also
+
   const product = products.find((p) => p.slug === slug);
 
   if (!product) {
     redirect("/projects");
   }
+
   return (
     <Container>
       <SingleProduct product={product} />
