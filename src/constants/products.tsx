@@ -92,7 +92,7 @@ export const products = [
     stack: ["ReactJs", "Tailwindcss", "Nextjs", "Clerk.js", "Prisma", "zod"],
     slug: "prio-x",
 
-    label: ProductLabel.Github,
+    label: ProductLabel.Live,
     content: (
       <div>
         <p>
