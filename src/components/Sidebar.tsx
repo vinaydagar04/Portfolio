@@ -37,7 +37,7 @@ export const Sidebar = () => {
               <Navigation setOpen={setOpen} />
             </div>
             <Badge
-              href="https://drive.google.com/file/d/1aGA4HBkedEvI336gyysToB6coBI9_e2x/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1wNUwkDSFUUaZjZCC7T_inD8h37Cl-zHP/view?usp=drive_link"
               text="Read Resume"
             />
           </motion.div>
